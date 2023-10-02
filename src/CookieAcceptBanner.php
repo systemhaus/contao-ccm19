@@ -30,7 +30,7 @@ class CookieAcceptBanner
             if ($api_key !== null) {
                 $strBuffer = str_replace(
                     '</title>',
-                    "</title>\n".html_entity_decode($objRootPage->ccm19_code_snippet),
+                    "</title>\n".str_replace('[&]', '&', $objRootPage->ccm19_code_snippet),
                     $strBuffer
                 );
             }

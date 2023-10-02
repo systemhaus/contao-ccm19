@@ -27,7 +27,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['ccm19_code_snippet'] = array(
     'exclude' => true,
     'search' => true,
     'inputType' => 'textarea',
-    'eval' => array('decodeEntities' => true, 'tl_class' => 'w100', 'rte' => 'ace|html'),
+    'eval' => array('decodeEntities' => true, 'tl_class' => 'w100', 'rte' => 'ace|html', 'preserveTags' => true),
     'sql' => "text default ''"
 );
 
