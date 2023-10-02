@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contao Cookiebot extension
+ * Contao CCM19 extension
  *
  * @copyright 2019 ETES GmbH
  * @license LGPLv3

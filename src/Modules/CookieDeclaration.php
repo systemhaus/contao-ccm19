@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contao Cookiebot extension
+ * Contao CCM19 extension
  *
  * @copyright 2019 ETES GmbH
  * @license LGPLv3
@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Systemhaus\Cookiebot\Modules;
+namespace Systemhaus\Ccm19\Modules;
 
 use Contao\BackendTemplate;
 use Contao\FrontendTemplate;
@@ -17,17 +17,17 @@ use Contao\Module;
 use Contao\PageModel;
 
 /**
- * Frontend module for displaying the Cookiebot details in a privacy page
+ * Frontend module for displaying the CCM19 details in a privacy page
  */
 class CookieDeclaration extends Module
 {
-    protected $strTemplate = 'mod_cookiebot_declaration';
+    protected $strTemplate = 'mod_ccm19_declaration';
 
     public function generate()
     {
         if (TL_MODE === 'BE') {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = '###' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['cookiebot_declaration'][0] . '###');
+            $objTemplate->wildcard = '###' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['ccm19_declaration'][0] . '###');
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
             $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
@@ -42,18 +42,14 @@ class CookieDeclaration extends Module
         global $objPage;
 
         if (($objRootPage = PageModel::findByPk($objPage->rootId)) !== null) {
-            if ($this->cookiebot_declaration_template && $this->cookiebot_declaration_template !== 'mod_cookiebot_declaration') {
-                $this->Template = new FrontendTemplate($this->cookiebot_declaration_template);
+            if ($this->ccm19_declaration_template && $this->ccm19_declaration_template !== 'mod_ccm19_declaration') {
+                $this->Template = new FrontendTemplate($this->ccm19_declaration_template);
             }
 
-            $api_key = $objRootPage->cookiebot_api_key;
-            $location = $objRootPage->cookiebot_cdn_location;
-            $additional_classes = 'mod_cookiebot';
+            $additional_classes = 'mod_ccm19';
 
             $this->Template->additional_classes = $additional_classes;
-            $this->Template->active = $objRootPage->cookiebot_active;
-            $this->Template->api_key = $api_key;
-            $this->Template->location = $location;
+            $this->Template->active = $objRootPage->ccm19_active;
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contao Cookiebot extension
+ * Contao CCM19 extension
  *
  * @copyright 2019 ETES GmbH
  * @license LGPLv3
@@ -9,14 +9,14 @@
 
 declare(strict_types=1);
 
-namespace Systemhaus\Cookiebot\DependencyInjection;
+namespace Systemhaus\Ccm19\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ContaoCookiebotExtension extends Extension
+class ContaoCcm19Extension extends Extension
 {
     /**
      * {@inheritdoc}

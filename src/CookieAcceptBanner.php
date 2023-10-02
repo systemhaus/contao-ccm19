@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contao Cookiebot extension
+ * Contao CCM19 extension
  *
  * @copyright 2019 ETES GmbH
  * @license LGPLv3
@@ -9,17 +9,15 @@
 
 declare(strict_types=1);
 
-namespace Systemhaus\Cookiebot;
+namespace Systemhaus\Ccm19;
 
 use Contao\PageModel;
 
 /**
- * Insert the Cookiebot JS first place in the page <head>
+ * Insert the CCM19 JS first place in the page <head>
  */
 class CookieAcceptBanner
 {
-    const JS_STRING = '<script id="Cookiebot" src="https://consent.cookiebot.%s/uc.js" data-cbid="%s" type="text/javascript" %s%s></script>';
-
     public function insertJavascriptIntoFullPage($strBuffer, $strTemplate)
     {
         if (false === strpos($strTemplate, 'fe_', 0)) {
@@ -27,22 +25,12 @@ class CookieAcceptBanner
         }
 
         global $objPage;
-        if (($objRootPage = PageModel::findByPk($objPage->rootId)) !== null && $objRootPage->cookiebot_active && $objRootPage->cookiebot_show_banner) {
-            $api_key = $objRootPage->cookiebot_api_key;
-            $location = $objRootPage->cookiebot_cdn_location;
+        if (($objRootPage = PageModel::findByPk($objPage->rootId)) !== null && $objRootPage->ccm19_active) {
+            $api_key = $objRootPage->ccm19_code_snippet;
             if ($api_key !== null) {
-                $blockingmode = '';
-                if ((int)$objRootPage->cookiebot_blockingmode_auto === 1) {
-                    $blockingmode = 'data-blockingmode="auto"';
-                }
-                $culture = '';
-                if (!empty($objRootPage->cookiebot_culture)) {
-                    $culture = ' data-culture="'.$objRootPage->cookiebot_culture.'"';
-                }
-                $html = sprintf(self::JS_STRING, $location == 'eu' ? 'eu' : 'com', $api_key, $blockingmode, $culture);
                 $strBuffer = str_replace(
                     '</title>',
-                    "</title>\n$html",
+                    "</title>\n".html_entity_decode($objRootPage->ccm19_code_snippet),
                     $strBuffer
                 );
             }
